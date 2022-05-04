@@ -10,3 +10,15 @@ department (type: text) {group by} [In a real world situation it is bad practice
 sale_count (type: int)
 
 <ad img here>
+
+```
+SELECT 
+  CAST(s.transaction_date AS DATE) AS day,
+  d.name as department,
+  CAST(COUNT(p.price) AS INT) AS sale_count
+FROM department d  
+  JOIN sale s ON d.id = s.department_id
+  JOIN product p ON s.product_id = p.id
+  GROUP BY d.name, day
+  ORDER BY day ASC
+  ```
